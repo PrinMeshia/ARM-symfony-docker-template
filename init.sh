@@ -9,6 +9,7 @@ PMA_PORT=8081
 MAILDEV_PORT=8082
 WWW_PORT=8080
 ARCH=""
+
 FRAMEWORK_LIST=( "symfony" "laravel" )
 
 function detectArch() {
@@ -158,6 +159,7 @@ function editDockerCompose()
 	sed -i "s/MAILDEV_PORT/${MAILDEV_PORT}/g" docker-compose.yml
 	sed -i "s/WWW_PORT/${WWW_PORT}/g" docker-compose.yml
 }
+
 function initProject() {
     if [ "$IS_NEW_PROJECT" != true ]; then
         git clone -q $GIT_REPO_URL $PROJECT_DIR
@@ -229,8 +231,8 @@ frameworkMenu
 setProjectVars
 recapBeforeInstall
 
+
 end=`date +%s`
 whiptail \
     --title "$INSTALL_MAIN_TITLE" \
     --msgbox "installation completed in `expr $end - $start` seconds" 8 78
-# echo "$USER_FRAMEWORK"
